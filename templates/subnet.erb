@@ -1,0 +1,15 @@
+
+subnet <%= @name %> netmask <%= @netmask %> {
+<%- @ranges.each do | range | -%>
+  range <%= range %>;
+<%- end -%>
+<%- routersstring = @routers.join(', '); -%>
+  option routers <%= routersstring %>;
+<%- if @broadcast -%>  option broadcast-address <%= @broadcast %>; <% end -%>
+<%- if @default_lease_time -%>  default-lease-time <%= @default_lease_time %>; <% end -%>
+<%- if @max_lease_time -%>  max-lease-time <%= @max_lease_time %>; <% end -%>
+<%- if @domain_name -%>  option domain-name "<%= @domain_name %>"; <% end -%>
+<%- @options.each do | key, val | -%>
+  option <%= key %> <%= val %>;
+<%- end -%>
+}

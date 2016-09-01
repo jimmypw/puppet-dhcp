@@ -1,0 +1,12 @@
+---
+HOSTS:
+  ubuntu1404-64-1:
+    hypervisor: vagrant
+    platform: ubuntu-14.04-amd64
+    template: ubuntu-1404-x86_64
+    roles:
+    - agent
+    - default
+    box: ubuntu/trusty64
+CONFIG:
+  nfs_server: none

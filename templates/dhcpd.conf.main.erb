@@ -1,0 +1,24 @@
+<%- if @authoritative -%>
+authoritative;
+<%- end -%>
+
+log-facility <%= @log_facility %>;
+<% if @ddns_updates -%>
+ddns-updates on;
+<% else -%>
+ddns-updates off;
+<% end -%>
+ddns-update-style <%= @ddns_update_style %>;
+<%- if @omapi_port -%>
+omapi-port <%= @omapi_port %>;
+<%- end -%>
+
+default-lease-time <%= @default_lease_time %>;
+min-lease-time <%= @min_lease_time %>;
+max-lease-time <%= @max_lease_time %>;
+
+option domain-name "<%= @domain_name %>";
+option domain-name-servers <%= @domain_name_servers %>;
+<%- if @next_server -%>
+next-server <%= @next_server %>;
+<%- end -%>

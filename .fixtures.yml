@@ -1,0 +1,8 @@
+fixtures:
+  symlinks:
+    dhcp: "#{source_dir}"
+  forge_modules:
+    concat:
+      repo: "puppetlabs-concat"
+    stdlib:
+      repo: "puppetlabs-stdlib"
