@@ -21,51 +21,56 @@ describe 'dhcp::server::subnet defined type' do
 
   it 'should run without errors' do
     result = apply_manifest(manifest, :catch_failures => true)
-    expect(@result.exit_code).to eq 2
+    expect(result.exit_code).to eq 2
   end
 
   it 'should run a second time without changes' do
     result = apply_manifest(manifest, :catch_faulures => true)
-    expect(@result.exit_code).to eq 0
+    expect(result.exit_code).to eq 0
   end
 
-  it 'sets subnet' do
+  it 'opens subnet' do
     result = shell('grep -E \'subnet\s+10.10.10.0\s+netmask\s+255.255.255.0\s+{$\' /etc/dhcp/dhcpd.conf')
-    expect(@result.exit_code).to eq 0
+    expect(result.exit_code).to eq 0
   end
 
   it 'sets first range' do
     result = shell('grep -E \'range 10.10.10.10\s+10.10.10.20;$\' /etc/dhcp/dhcpd.conf')
-    expect(@result.exit_code).to eq 0
+    expect(result.exit_code).to eq 0
   end
 
   it 'sets second range' do
     result = shell('grep -E \'range 10.10.10.30\s+10.10.10.40;$\' /etc/dhcp/dhcpd.conf')
-    expect(@result.exit_code).to eq 0
+    expect(result.exit_code).to eq 0
   end
 
   it 'sets routers' do
     result = shell('grep -E \'option\s+routers\s+10.10.10.1,\s+10.10.10.2;$\' /etc/dhcp/dhcpd.conf')
-    expect(@result.exit_code).to eq 0
+    expect(result.exit_code).to eq 0
   end
 
   it 'sets broadcast-address' do
     result = shell('grep -E \'option\s+broadcast-address\s+10.10.10.255;$\' /etc/dhcp/dhcpd.conf')
-    expect(@result.exit_code).to eq 0
+    expect(result.exit_code).to eq 0
   end
 
   it 'sets default-lease-time' do
     result = shell('grep -E \'default-lease-time\s+50;$\' /etc/dhcp/dhcpd.conf')
-    expect(@result.exit_code).to eq 0
+    expect(result.exit_code).to eq 0
   end
 
   it 'sets max-lease-time' do
     result = shell('grep -E \'max-lease-time\s+70;$\' /etc/dhcp/dhcpd.conf')
-    expect(@result.exit_code).to eq 0
+    expect(result.exit_code).to eq 0
   end
 
   it 'sets domain-name' do
     result = shell('grep -E \'option\s+domain-name\s+"test.local";$\' /etc/dhcp/dhcpd.conf')
-    expect(@result.exit_code).to eq 0
+    expect(result.exit_code).to eq 0
+  end
+
+  it 'closes the subnet block' do
+    result = shell('tail -1 /etc/dhcp/dhcpd.conf | grep -E \'}$\' ')
+    expect(result.exit_code).to eq 0
   end
 end
