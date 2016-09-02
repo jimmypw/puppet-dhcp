@@ -8,7 +8,7 @@ define dhcp::server::subnet (
   $options            = {},
   $default_lease_time = undef,
   $max_lease_time     = undef,
-  $dhcp_config        = $::dhcp::server::dhcpd_config,
+  $dhcp_config        = $::dhcp::server::dhcpd_config
 )
 {
 
@@ -27,6 +27,6 @@ define dhcp::server::subnet (
   concat::fragment{"subnet_${name}":
     target  => $dhcp_config,
     content => template('dhcp/subnet.erb'),
-    order   => 20,
+    order   => 20
   }
 }
