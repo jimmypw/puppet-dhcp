@@ -70,7 +70,7 @@ describe 'dhcp::server::subnet defined type' do
   end
 
   it 'closes the subnet block' do
-    result = shell('tail -1 /etc/dhcp/dhcpd.conf | grep -E \'}$\' ')
+    result = shell('tail -2 /etc/dhcp/dhcpd.conf | grep -E \'}$\' ')
     expect(result.exit_code).to eq 0
   end
 end

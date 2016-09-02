@@ -43,7 +43,7 @@ describe 'dhcp::server::condition defined type' do
   end
 
   it 'creates an onFalse condition' do
-    result = shell('grep -C 2 -E \'test_f\' /etc/dhcp/dhcpd.conf | grep -E \'}$\'')
+    result = shell('tail -2 /etc/dhcp/dhcpd.conf | grep -E \'}$\'')
     expect(result.exit_code).to eq 0
   end
 end
