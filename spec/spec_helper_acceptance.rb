@@ -3,11 +3,6 @@ require 'pry'
 
 # Install Puppet on all hosts
 hosts.each do |host|
-  # Debian only currently
-  on(host, 'apt-get --purge remove -y puppet*')
-  on(host, 'curl -o /tmp/puppet.deb http://apt.puppetlabs.com/puppetlabs-release-pc1-trusty.deb')
-  on(host, 'dpkg -i /tmp/puppet.deb')
-  install_puppet_agent_on(host)
   add_aio_defaults_on(host)
   add_puppet_paths_on(host)
 end
