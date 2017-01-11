@@ -1,5 +1,5 @@
 class dhcp::server::service {
-  service {'isc-dhcp-server' :
+  service {$::dhcp::server::servicename :
     ensure => running,
     # Following line disabled as it breaks puppet with :
     # Could not evaluate: invalid byte sequence in US-ASCII

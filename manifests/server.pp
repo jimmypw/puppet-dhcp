@@ -10,6 +10,8 @@ class dhcp::server(
   $min_lease_time      = $::dhcp::server::params::min_lease_time,
   $max_lease_time      = $::dhcp::server::params::max_lease_time,
   $omapi_port          = $::dhcp::server::params::omapi_port,
+  $packagename         = $::dhcp::server::params::packagename,
+  $servicename         = $::dhcp::server::params::servicename
 ) inherits dhcp::server::params {
   class {'::dhcp::server::install': } ->
   class {'::dhcp::server::config':  } ~>

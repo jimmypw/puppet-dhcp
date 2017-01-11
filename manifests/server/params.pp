@@ -11,4 +11,18 @@ class dhcp::server::params {
   $ddns_updates        = false
   $ddns_update_style   = 'none'
   $omapi_port          = undef
+  case $::osfamily {
+    'RedHat': {
+      $packagename = 'dhcp'
+      $servicename = 'dhcpd'
+    }
+    'Debian': {
+      $packagename = 'isc-dhcp-server'
+      $servicename = 'isc-dhcp-server'
+    }
+    default:  {
+      fail('OS Not supported')
+    }
+  }
+    
 }

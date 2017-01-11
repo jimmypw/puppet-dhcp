@@ -1,6 +1,12 @@
 require 'spec_helper'
 
 describe 'dhcp::server::zone' do
+  let(:facts) do
+    {
+      'osfamily' => 'RedHat'
+    }
+  end
+
   let(:pre_condition) do
     'include "::dhcp::server"'
   end

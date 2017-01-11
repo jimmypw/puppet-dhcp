@@ -1,5 +1,5 @@
 class dhcp::server::install {
-  package { 'isc-dhcp-server':
+  package { $dhcp::server::packagename:
     ensure => installed,
   }
 }
